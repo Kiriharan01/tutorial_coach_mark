@@ -266,6 +266,7 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget>
                 child: widget.skipWidget ??
                     Text(
                       widget.textSkip,
+                      textScaleFactor: 1.0,
                       style: widget.textStyleSkip,
                     ),
               ),
