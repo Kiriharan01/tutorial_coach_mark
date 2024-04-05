@@ -251,24 +251,28 @@ class TutorialCoachMarkWidgetState extends State<TutorialCoachMarkWidget>
       return const SizedBox.shrink();
     }
 
-    return Align(
-      alignment: currentTarget?.alignSkip ?? widget.alignSkip,
-      child: SafeArea(
-        child: AnimatedOpacity(
-          opacity: showContent ? 1 : 0,
-          duration: const Duration(milliseconds: 300),
-          child: InkWell(
-            onTap: skip,
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: IgnorePointer(
-                ignoringSemantics: false,
-                child: widget.skipWidget ??
-                    Text(
-                      widget.textSkip,
-                      textScaleFactor: 1.0,
-                      style: widget.textStyleSkip,
-                    ),
+    return MediaQuery(
+      data: MediaQuery.of(context)
+          .copyWith(textScaler: const TextScaler.linear(1.0), boldText: false),
+      child: Align(
+        alignment: currentTarget?.alignSkip ?? widget.alignSkip,
+        child: SafeArea(
+          child: AnimatedOpacity(
+            opacity: showContent ? 1 : 0,
+            duration: const Duration(milliseconds: 300),
+            child: InkWell(
+              onTap: skip,
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: IgnorePointer(
+                  ignoringSemantics: false,
+                  child: widget.skipWidget ??
+                      Text(
+                        widget.textSkip,
+                        textScaleFactor: 1.0,
+                        style: widget.textStyleSkip,
+                      ),
+                ),
               ),
             ),
           ),
